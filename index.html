@@ -3,20 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Картинки-ссылки</title>
+    <title>Кнопки с гиперссылками</title>
+    <style>
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Картинки-ссылки</h1>
-    
-    <!-- Первая картинка -->
-    <a href="https://vitaexpress.ru/link_n.php?q=95101" target="_blank">
-        <img src="https://static.vitaexpress.ru/public/images/medium/172986.jpg" alt="Первая картинка" style="width: 200px; height: auto;">
-    </a>
-
-    <!-- Вторая картинка -->
-    <a href="vita://vitaexpress.ru/item/8508" target="_blank">
-        <img src="https://static.vitaexpress.ru/public/images/medium/176743.jpg" alt="Вторая картинка" style="width: 200px; height: auto;">
-    </a>
-
+    <div class="button-container">
+        <a href="vita://vitaexpress.ru/item/id" class="button">vita://vitaexpress.ru/item/id</a>
+        <a href="vita://vitaexpress.ru/special/id" class="button">vita://vitaexpress.ru/special/id</a>
+        <a href="vita://vitaexpress.ru/coupon/id" class="button">vita://vitaexpress.ru/coupon/id</a>
+        <a href="vita://vitaexpress.ru/specials" class="button">vita://vitaexpress.ru/specials</a>
+        <a href="vita://vitaexpress.ru/specials/coupons" class="button">vita://vitaexpress.ru/specials/coupons</a>
+        <a href="vita://vitaexpress.ru/constructors?additional_params={\"group_id\":\"groups.id\"}" class="button">vita://vitaexpress.ru/constructors?additional_params={"group_id":"groups.id"}</a>
+        <a href="vita://vitaexpress.ru/constructors?additional_params={\"brand_id\":\"tradebrands.id\"}" class="button">vita://vitaexpress.ru/constructors?additional_params={"brand_id":"tradebrands.id"}</a>
+        <a href="vita://vitaexpress.ru/stories?uuid=uuid" class="button">vita://vitaexpress.ru/stories?uuid=uuid</a>
+        <a href="vita://vitaexpress.ru/groups" class="button">vita://vitaexpress.ru/groups</a>
+        <a href="vita://vitaexpress.ru/card" class="button">vita://vitaexpress.ru/card</a>
+        <a href="vita://vitaexpress.ru/cart" class="button">vita://vitaexpress.ru/cart</a>
+        <a href="vita://vitaexpress.ru/profile" class="button">vita://vitaexpress.ru/profile</a>
+        <a href="vita://vitaexpress.ru/profile/edit" class="button">vita://vitaexpress.ru/profile/edit</a>
+        <a href="vita://vitaexpress.ru/orders" class="button">vita://vitaexpress.ru/orders</a>
+        <a href="vita://vitaexpress.ru/orders/id" class="button">vita://vitaexpress.ru/orders/id</a>
+        <a href="vita://vitaexpress.ru/subscription/prime" class="button">vita://vitaexpress.ru/subscription/prime</a>
+        <a href="vita://vitaexpress.ru/stores" class="button">vita://vitaexpress.ru/stores</a>
+        <a href="vita://vitaexpress.ru/items/favorites" class="button">vita://vitaexpress.ru/items/favorites</a>
+    </div>
 </body>
 </html>
