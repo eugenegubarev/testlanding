@@ -27,31 +27,27 @@
     </style>
 </head>
 <body>
-    <div class="button-container">
-        <a href="https://t.me/aptekivita_bot" class="button">Перейти в телегу t.me/aptekivita_bot</a>
-        <a href="https://t.me/+CSFCswAG_ctjYTZi" class="button">Перейти в телеграмм, ссылка t.me/+CSFCswAG_ctjYTZi</a>
-        <a href="tg://resolve?domain=aptekivita_bot" class="button">Перейти в телеграмм, ссылка tg://resolve?domain=aptekivita_bot</a>
-        <a href="https://telegram.me/aptekivita_bot" class="button">Перейти в телегу telegram.me/aptekivita_bot</a>
-        <a href="https://t.me/aptekivita_bot" class="button" target="_blank">Перейти в телегу t.me/aptekivita_bot c target blank</a
-        <a href="vita://vitaexpress.ru/item/8508" class="button">Перейти в карточку товара</a>
-        <a href="vita://vitaexpress.ru/special/8084996" class="button">Перейти в детальную акции</a>
-        <a href="vita://vitaexpress.ru/coupon/8085307" class="button">Перейти в детальную купона</a>
-        <a href="vita://vitaexpress.ru/specials" class="button">Перейти в раздел акции</a>
-        <a href="vita://vitaexpress.ru/specials/coupons" class="button">Перейти в раздел купонов</a>
-        <a href="vita://vitaexpress.ru/constructors?additional_params=%7B%22group_id%22%3A1209%7D" class="button">Конструктор раздела</a>
-        <a href="vita://vitaexpress.ru/constructors?additional_params=%7B%22brand_id%22%3A171%7D" class="button">Конструктор бренда</a>
-        <a href="vita://vitaexpress.ru/constructors?additional_params=%7B%22landing_page_id%22%3A28%7D" class="button">Конструктор посадочной</a>
-        <a href="vita://vitaexpress.ru/stories?uuid=3748" class="button">Детальная истории</a>
-        <a href="vita://vitaexpress.ru/groups" class="button">Разделы каталога</a>
-        <a href="vita://vitaexpress.ru/card" class="button">Моя карта</a>
-        <a href="vita://vitaexpress.ru/cart" class="button">Корзина</a>
-        <a href="vita://vitaexpress.ru/profile" class="button">Профиль</a>
-        <a href="vita://vitaexpress.ru/profile/edit" class="button">Редактирование профиля</a>
-        <a href="vita://vitaexpress.ru/orders" class="button">Заказы</a>
-        <a href="vita://vitaexpress.ru/orders/25305" class="button">Детальная заказа</a>
-        <a href="vita://vitaexpress.ru/subscription/prime" class="button">Шторка оформления подписки прайма</a>
-        <a href="vita://vitaexpress.ru/stores" class="button">Адреса аптек</a>
-        <a href="vita://vitaexpress.ru/items/favorites" class="button">Избранные товары</a>
+<div class="button-container" style="display: flex; flex-direction: column; gap: 10px;">
+
+  <!-- Вариант 1: обычная ссылка -->
+  <a href="https://t.me/aptekivita_bot" 
+     class="button" 
+     target="_blank">
+    Перейти в телегу (через <a>)
+  </a>
+
+  <!-- Вариант 2: кнопка с JS -->
+  <button class="button" onclick="openTelegram()">
+    Перейти в телегу (через кнопку)
+  </button>
+
+</div>
+
+<script>
+  function openTelegram() {
+    window.open("https://t.me/aptekivita_bot", "_blank");
+  }
+</script>
     </div>
 </body>
 </html>
