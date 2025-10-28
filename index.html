@@ -3,213 +3,125 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ежедневная награда</title>
+<title>Задания</title>
 
 <style>
     body {
         margin: 0;
         font-family: Arial, sans-serif;
-        background: linear-gradient(180deg, #FF7A00, #FF9C40);
-        display: flex;
-        justify-content: center;
-        padding: 20px;
-        min-height: 100vh;
-        box-sizing: border-box;
+        background: #FF7A00;
+        overflow: hidden;
     }
 
+    /* --- ЭКРАНЫ --- */
+    .screen {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: linear-gradient(180deg, #FF7A00, #FF9C40);
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.35s ease-in-out;
+    }
+
+    .screen.active {
+        transform: translateX(0);
+    }
+
+    /* --- ВЕРХНЯЯ ПАНЕЛЬ --- */
+    .header {
+        display: flex;
+        align-items: center;
+        padding: 16px;
+        font-size: 20px;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    .back-btn {
+        background: #ffffff33;
+        border-radius: 12px;
+        padding: 10px 14px;
+        margin-right: 18px;
+        cursor: pointer;
+    }
+
+    /* --- КОНТЕЙНЕРЫ --- */
     .container {
         background: #fff;
-        width: 100%;
-        max-width: 440px;
         border-radius: 20px;
         padding: 20px;
+        margin: 20px;
         text-align: center;
     }
 
-    h1 {
-        background: linear-gradient(180deg, #3BB5FF, #007AFF);
-        color: #fff;
-        padding: 12px;
-        border-radius: 14px;
-        font-size: 22px;
-        margin-bottom: 12px;
-    }
-
-    .subtitle {
-        font-size: 14px;
-        color: #666;
-        margin-bottom: 20px;
-    }
-
-    /* Сетка */
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 12px;
-    }
-
-    .day {
-        background: #F5F5F5;
-        border-radius: 14px;
-        padding: 10px;
-        font-size: 12px;
-    }
-
-    .day.active {
-        border: 2px solid #007AFF;
-        background: #EAF5FF;
-    }
-
-    .day img {
-        width: 50px;
-        height: 50px;
-        margin: 6px 0;
-    }
-
-    .reward-label {
-        background: #FFA037;
-        color: white;
-        border-radius: 8px;
-        padding: 3px 0;
-        font-size: 12px;
-        margin-top: 4px;
-    }
-
-    .btn-main {
-        margin-top: 22px;
-        width: 100%;
+    /* --- ДНИ (Кликабельные карточки) --- */
+    .day-card {
+        background: #ffffff;
+        border-radius: 16px;
         padding: 16px;
-        background: linear-gradient(180deg, #3BB5FF, #007AFF);
-        border-radius: 14px;
-        border: none;
-        color: white;
+        margin: 16px;
         font-size: 18px;
+        font-weight: 600;
         cursor: pointer;
-    }
-
-    /* ---- Overlay ---- */
-    .overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.4);
-        opacity: 0;
-        pointer-events: none;
-        transition: 0.3s;
-    }
-
-    .overlay.show {
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    /* ---- ШТОРКА ---- */
-    .sheet {
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: -100%;
-        background: #fff;
-        border-radius: 22px 22px 0 0;
-        padding: 24px;
         text-align: center;
-        transition: bottom 0.35s ease-out;
-        max-width: 440px;
-        margin: 0 auto;
-        box-shadow: 0 -6px 20px rgba(0,0,0,0.25);
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        transition: 0.2s;
     }
-
-    .sheet.show {
-        bottom: 0;
-    }
-
-    .close {
-        position: absolute;
-        right: 18px;
-        top: 18px;
-        font-size: 28px;
-        cursor: pointer;
-        color: #888;
-    }
-
-    .heart-img {
-        width: 160px;
-        margin: 20px 0;
-    }
-
-    .btn-home {
-        width: 100%;
-        padding: 16px;
-        background: linear-gradient(180deg, #3BB5FF, #007AFF);
-        border-radius: 14px;
-        border: none;
-        color: white;
-        font-size: 18px;
-        cursor: pointer;
-        margin-top: 10px;
+    .day-card:hover {
+        transform: scale(1.03);
     }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-    <h1>ЕЖЕДНЕВНАЯ НАГРАДА</h1>
-    <div class="subtitle">Заходите каждый день и получайте награды</div>
+<!-- ✅ ГЛАВНЫЙ ЭКРАН -->
+<div id="screen-main" class="screen active">
 
-    <div class="grid">
-        <!-- День 1 (активный) -->
-        <div class="day active">
-            <div>1 ДЕНЬ</div>
-            <img src="https://i.imgur.com/PzL96lJ.png" alt="heart">
-            <div class="reward-label">1 сердце</div>
-        </div>
-
-        <div class="day"><div>2 ДЕНЬ</div><img src="https://i.imgur.com/PzL96lJ.png"><div class="reward-label">3 сердца</div></div>
-        <div class="day"><div>3 ДЕНЬ</div><img src="https://i.imgur.com/9mH5ClH.png"><div class="reward-label">Промокод</div></div>
-        <div class="day"><div>4 ДЕНЬ</div><img src="https://i.imgur.com/9mH5ClH.png"><div class="reward-label">Промокод</div></div>
-
-        <div class="day"><div>5 ДЕНЬ</div><img src="https://i.imgur.com/PzL96lJ.png"><div class="reward-label">5 сердец</div></div>
-        <div class="day"><div>6 ДЕНЬ</div><img src="https://i.imgur.com/9mH5ClH.png"><div class="reward-label">Промокод</div></div>
-        <div class="day"><div>7 ДЕНЬ</div><img src="https://i.imgur.com/r7xhlHf.png"><div class="reward-label">50 бонусов</div></div>
-        <div class="day"><div>8 ДЕНЬ</div><img src="https://i.imgur.com/PzL96lJ.png"><div class="reward-label">10 сердец</div></div>
-
-        <div class="day"><div>9 ДЕНЬ</div><img src="https://i.imgur.com/PzL96lJ.png"><div class="reward-label">13 сердец</div></div>
-        <div class="day"><div>10 ДЕНЬ</div><img src="https://i.imgur.com/r7xhlHf.png"><div class="reward-label">75 бонусов</div></div>
-        <div class="day"><div>11 ДЕНЬ</div><img src="https://i.imgur.com/PzL96lJ.png"><div class="reward-label">15 сердец</div></div>
-        <div class="day"><div>12 ДЕНЬ</div><img src="https://i.imgur.com/9mH5ClH.png"><div class="reward-label">Промокод</div></div>
-
-        <div class="day"><div>13 ДЕНЬ</div><img src="https://i.imgur.com/PzL96lJ.png"><div class="reward-label">25 сердец</div></div>
-        <div class="day"><div>14 ДЕНЬ</div><img src="https://i.imgur.com/PzL96lJ.png"><div class="reward-label">50 сердец</div></div>
+    <div class="header" style="justify-content:center;">
+        <div>Задания</div>
     </div>
 
-    <button class="btn-main" id="openSheet">ЗАБРАТЬ</button>
+    <div class="container">
+        <h2>Доступно заданий: 16</h2>
+        <p>Выполняйте задания, копите сердца и получайте призы!</p>
+    </div>
+
+    <!-- Пример карточки перехода -->
+    <div class="day-card" onclick="showDay2()">День 2</div>
+    <div class="day-card">День 3</div>
+    <div class="day-card">День 4</div>
+
 </div>
 
-<div class="overlay" id="overlay"></div>
+<!-- ✅ ЭКРАН ДНЯ 2 -->
+<div id="screen-day2" class="screen">
 
-<div class="sheet" id="sheet">
-    <div class="close" id="closeSheet">×</div>
-    <img class="heart-img" src="https://i.imgur.com/PzL96lJ.png">
-    <h2>Награда за 1 день — <b>1 сердце</b></h2>
-    <button class="btn-home">НА ГЛАВНУЮ</button>
+    <div class="header">
+        <div class="back-btn" onclick="showMain()">←</div>
+        День 2 — Задания
+    </div>
+
+    <div class="container">
+        <h3>Задания на день 2</h3>
+        <p>Пример — здесь выводятся задания, прогресс и награды.</p>
+    </div>
+
 </div>
 
 <script>
-const sheet = document.getElementById("sheet");
-const overlay = document.getElementById("overlay");
+    function showDay2() {
+        document.getElementById('screen-main').classList.remove('active');
+        document.getElementById('screen-day2').classList.add('active');
+    }
 
-document.getElementById("openSheet").onclick = () => {
-    sheet.classList.add("show");
-    overlay.classList.add("show");
-};
-
-document.getElementById("closeSheet").onclick = closeSheet;
-overlay.onclick = closeSheet;
-
-function closeSheet() {
-    sheet.classList.remove("show");
-    overlay.classList.remove("show");
-}
+    function showMain() {
+        document.getElementById('screen-day2').classList.remove('active');
+        document.getElementById('screen-main').classList.add('active');
+    }
 </script>
 
 </body>
