@@ -1,53 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кнопки с гиперссылками</title>
-    <style>
-        .button-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .button {
-            padding: 10px 20px;
-            font-size: 16px;
-            text-align: center;
-            text-decoration: none;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Ежедневная награда</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(180deg, #FF7A00, #FF9C40);
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .container {
+        background: #fff;
+        width: 380px;
+        border-radius: 20px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    h1 {
+        background: linear-gradient(180deg, #3BB5FF, #007AFF);
+        color: #fff;
+        padding: 12px;
+        border-radius: 14px;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .btn-main {
+        margin-top: 20px;
+        width: 100%;
+        padding: 16px;
+        background: linear-gradient(180deg, #3BB5FF, #007AFF);
+        border-radius: 14px;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    /* --- ШТОРКА --- */
+    .sheet {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: -100%;
+        background: #fff;
+        border-radius: 22px 22px 0 0;
+        padding: 24px;
+        text-align: center;
+        transition: 0.35s;
+        max-width: 420px;
+        margin: 0 auto;
+    }
+
+    .sheet.show {
+        bottom: 0;
+    }
+
+    .close {
+        position: absolute;
+        right: 18px;
+        top: 18px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .heart-img {
+        width: 160px;
+        margin: 20px 0;
+    }
+
+    .btn-home {
+        width: 100%;
+        padding: 16px;
+        background: linear-gradient(180deg, #3BB5FF, #007AFF);
+        border-radius: 14px;
+        border: none;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+</style>
 </head>
 <body>
-<div class="button-container">
-        <a href="https://t.me/aptekivita_bot?start=vita_vygoda" class="button">Перейти в телеграм</a>                                                                                                                                                                                 
-        <a href="vita://vitaexpress.ru/item/8508" class="button">Перейти в карточку товара</a>
-        <a href="vita://vitaexpress.ru/special/8084996" class="button">Перейти в детальную акции</a>
-        <a href="vita://vitaexpress.ru/coupon/8085307" class="button">Перейти в детальную купона</a>
-        <a href="vita://vitaexpress.ru/specials" class="button">Перейти в раздел акции</a>
-        <a href="vita://vitaexpress.ru/specials/coupons" class="button">Перейти в раздел купонов</a>
-        <a href="vita://vitaexpress.ru/constructors?additional_params=%7B%22group_id%22%3A1209%7D" class="button">Конструктор раздела</a>
-        <a href="vita://vitaexpress.ru/constructors?additional_params=%7B%22brand_id%22%3A171%7D" class="button">Конструктор бренда</a>
-        <a href="vita://vitaexpress.ru/constructors?additional_params=%7B%22landing_page_id%22%3A28%7D" class="button">Конструктор посадочной</a>
-        <a href="vita://vitaexpress.ru/stories?uuid=3748" class="button">Детальная истории</a>
-        <a href="vita://vitaexpress.ru/groups" class="button">Разделы каталога</a>
-        <a href="vita://vitaexpress.ru/card" class="button">Моя карта</a>
-        <a href="vita://vitaexpress.ru/cart" class="button">Корзина</a>
-        <a href="vita://vitaexpress.ru/profile" class="button">Профиль</a>
-        <a href="vita://vitaexpress.ru/profile/edit" class="button">Редактирование профиля</a>
-        <a href="vita://vitaexpress.ru/orders" class="button">Заказы</a>
-        <a href="vita://vitaexpress.ru/orders/25305" class="button">Детальная заказа</a>
-        <a href="vita://vitaexpress.ru/subscription/prime" class="button">Шторка оформления подписки прайма</a>
-        <a href="vita://vitaexpress.ru/stores" class="button">Адреса аптек</a>
-        <a href="vita://vitaexpress.ru/items/favorites" class="button">Избранные товары</a>
+
+<div class="container">
+    <h1>ЕЖЕДНЕВНАЯ НАГРАДА</h1>
+
+    <p>Заберите награду за 1 день</p>
+
+    <button class="btn-main" id="openSheet">ЗАБРАТЬ</button>
 </div>
+
+
+<!-- ВСПЛЫВАЮЩАЯ ШТОРКА -->
+<div class="sheet" id="sheet">
+    <div class="close" id="closeSheet">×</div>
+    <img class="heart-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Red_Heart.svg/1200px-Red_Heart.svg.png">
+    <h2>Награда за 1 день — <b>1 сердце</b></h2>
+    <button class="btn-home">НА ГЛАВНУЮ</button>
+</div>
+
+<script>
+    const sheet = document.getElementById("sheet");
+    document.getElementById("openSheet").onclick = () => sheet.classList.add("show");
+    document.getElementById("closeSheet").onclick = () => sheet.classList.remove("show");
+</script>
+
 </body>
 </html>
