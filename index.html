@@ -1,74 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Акция — ВИТАминки</title>
-  <style>
-    :root{--bg:#f6f8fb;--accent:#1e90ff;--card:#ffffff}
-    body{font-family: Inter, Roboto, Arial, sans-serif;margin:0;background:linear-gradient(180deg,#fff 0%,#f6f8fb 100%);color:#111}
-    .container{max-width:420px;margin:28px auto;padding:18px}
-    .hero{background:linear-gradient(180deg,#ff8a00,#ff6b00);color:#fff;padding:20px;border-radius:12px;position:relative;overflow:hidden}
-    .hero h1{font-size:18px;margin:0 0 8px}
-    .hero p{margin:0;font-size:13px;opacity:0.95}
-
-    .card{background:var(--card);border-radius:12px;padding:18px;margin-top:-28px;box-shadow:0 8px 20px rgba(0,0,0,0.08)}
-    .badge{display:flex;align-items:center;justify-content:center;flex-direction:column;padding:18px;border-radius:10px;background:linear-gradient(180deg,#4db8ff,#1ea8ff);color:#fff}
-    .badge .count{font-size:56px;font-weight:700;line-height:1}
-    .badge .sub{font-size:13px;opacity:0.95}
-
-    .title{margin:18px 0 8px;font-size:20px;text-align:center}
-    .desc{font-size:14px;color:#444;text-align:center;margin-bottom:14px}
-
-    .progress-wrap{padding:12px 10px}
-    .meter{height:12px;background:#e9f1fb;border-radius:8px;position:relative}
-    .meter-fill{height:100%;width:30%;background:linear-gradient(90deg,#6ad1ff,#2ea6ff);border-radius:8px}
-    .milestones{display:flex;justify-content:space-between;margin-top:8px;font-size:13px;color:#222}
-    .milestones .item{text-align:center}
-
-    .cta{display:block;margin:20px auto 8px;padding:14px 18px;border-radius:10px;background:linear-gradient(90deg,#1e90ff,#3aa0ff);color:#fff;text-decoration:none;text-align:center;font-weight:600;box-shadow:0 6px 18px rgba(30,144,255,0.28)}
-    .cta:active{transform:translateY(1px)}
-
-    .help{display:block;text-align:center;margin-top:6px;color:#2b7ed2;text-decoration:underline;font-size:13px}
-
-    /* responsive */
-    @media (max-width:420px){.container{margin:12px;padding:12px}}
-  </style>
+    <meta charset="UTF-8">
+    <title>Кнопки перехода</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-  <div class="container" role="main">
-    <div class="hero" aria-hidden="false">
-      <h1>Секретный каталог</h1>
-      <p>со скидками до 40% и повышенным кэшбэком за Ваши покупки</p>
-    </div>
 
-    <div class="card" role="region" aria-label="Накоплено витамиНок">
-      <div class="badge" aria-hidden="false">
-        <div class="sub">НАКОПЛЕНО ВИТАмиНок</div>
-        <div class="count" aria-live="polite">0 <span style="font-size:22px;vertical-align:middle;">💊🥬</span></div>
-        <div class="sub">Это ваши ВИТАминки за время акции</div>
-      </div>
+    <a class="btn" href="vita://vitaexpress.ru/constructors?additional_params=%7B%22landing_page_id%22%3A419%7D">
+        Кнопка 1 (URL encoded)
+    </a>
 
-      <h2 class="title">Копите ВИТАминки и получайте бонусы и подарки</h2>
-      <p class="desc">Покупайте товары, отмеченные знаком акции, и следите за накопленными ВИТАминками.</p>
+    <a class="btn" href='vita://vitaexpress.ru/constructors?additional_params={"landing_page_id":419}'>
+        Кнопка 2 (JSON без кодирования)
+    </a>
 
-      <a class="help" href="vita://vitaexpress.ru/groups">Как это работает?</a>
-
-      <div class="progress-wrap" aria-hidden="false">
-        <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30">
-          <div class="meter-fill"></div>
-        </div>
-        <div class="milestones">
-          <div class="item"><strong>25</strong><div>ВИТАминок</div></div>
-          <div class="item"><strong>30</strong><div>ВИТАминок</div></div>
-          <div class="item"><strong>50</strong><div>ВИТАминок</div></div>
-        </div>
-      </div>
-
-      <!-- Кнопка с переходом в Telegram -->
-      <a class="cta" href="https://t.me/aptekivita_bot?start=vita_vygoda" target="_blank" rel="noopener noreferrer" aria-label="Задать вопрос по акции">Задать вопрос по акции</a>
-
-    </div>
-  </div>
 </body>
 </html>
